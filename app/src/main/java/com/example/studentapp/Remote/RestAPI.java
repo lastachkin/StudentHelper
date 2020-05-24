@@ -33,6 +33,8 @@ public interface RestAPI {
 
     @DELETE("api/course/{id}")
     Call<Void> deleteCourse(@Path("id") String id);
-    @DELETE("api/member/{courseid, id}")
+    @DELETE("api/member/{courseid}/{id}")
     Call<Void> deleteMember(@Path("courseid") String courseId, @Path("id") String id);
+    @DELETE("api/member/{courseId}")
+    Call<Void> deleteCourseMembers(@Path("courseId") String id);
 }

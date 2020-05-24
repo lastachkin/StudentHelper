@@ -100,11 +100,11 @@ public class RegCourse extends AppCompatActivity {
 
     public void subscribeCourseHandler(View view) {
         //Insert into local DB
-        App.getInstance().getDatabase().memberDao().insert(new Member(courseId, Home.userId));
+        App.getInstance().getDatabase().memberDao().insert(new Member(courseId, App.userId));
         Log.i(App.tag, "Insert into Member OK - Local DB");
 
         //Insert into remote DB
-        disposables.add(App.getInstance().getRestAPI().addMember(new Member(courseId, Home.userId))
+        disposables.add(App.getInstance().getRestAPI().addMember(new Member(courseId, App.userId))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {

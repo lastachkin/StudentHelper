@@ -13,14 +13,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
 public class Home extends AppCompatActivity {
-    public static String userId;
     private ActionBarDrawerToggle toggle = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        userId = getIntent().getStringExtra("USER_ID");
+        Log.i(App.tag, "Home userId = " + App.userId);
 
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.navView);

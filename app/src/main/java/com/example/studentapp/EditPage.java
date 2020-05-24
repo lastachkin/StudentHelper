@@ -58,6 +58,7 @@ public class EditPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_page);
+        Log.i(App.tag, "EditPage userId = " + App.userId);
 
         tvDate = findViewById(R.id.tvDate);
         titleView = findViewById(R.id.title);
@@ -154,7 +155,7 @@ public class EditPage extends AppCompatActivity {
     public void deleteCourseHandler(View view) {
         //Delete from local db
         Course course = App.getInstance().getDatabase().courseDao().getById(courseId);
-        Member member = App.getInstance().getDatabase().memberDao().getById(courseId, Home.userId);
+        Member member = App.getInstance().getDatabase().memberDao().getById(courseId, App.userId);
         App.getInstance().getDatabase().courseDao().delete(course);
         App.getInstance().getDatabase().memberDao().delete(member);
         Log.i(App.tag, "Delete from Course OK - Local DB");
@@ -176,7 +177,7 @@ public class EditPage extends AppCompatActivity {
             });
 
             //ToDo delete all members instead of single
-            call = App.getInstance().getRestAPI().deleteMember(courseId, Home.userId);
+            call = App.getInstance().getRestAPI().deleteCourseMembers(courseId);
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {

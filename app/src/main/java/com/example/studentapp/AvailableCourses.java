@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AvailableCourses extends AppCompatActivity {
+    boolean isFirstLoad = true;
     private ListView coursesList;
     private ActionBarDrawerToggle toggle = null;
     private ArrayList courseTitles = new ArrayList();
@@ -27,6 +28,7 @@ public class AvailableCourses extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_courses);
+        Log.i(App.tag, "AvailableCourses userId = " + App.userId);
 
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.navView);
@@ -79,7 +81,7 @@ public class AvailableCourses extends AppCompatActivity {
     void prepareListView() {
         courseTitles.clear();
 
-        List<Course> courses = App.getInstance().getDatabase().courseDao().availableCourses(Home.userId);
+        List<Course> courses = App.getInstance().getDatabase().courseDao().availableCourses(App.userId);
 
         if(courses != null)
             for(int i = 0; i < courses.size(); i++)
@@ -99,5 +101,14 @@ public class AvailableCourses extends AppCompatActivity {
             regPage.putExtra("AV_DATE", course.Date);
             startActivity(regPage);
         });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        if(!isFirstLoad) {
+            prepareListView();
+        }
+        isFirstLoad = false;
     }
 }

@@ -53,6 +53,7 @@ public class CreationPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creation_page);
         disposables = new CompositeDisposable();
+        Log.i(App.tag, "Creation userId = " + App.userId);
 
         tvDate = findViewById(R.id.tvDate);
         titleView = findViewById(R.id.title);
@@ -110,12 +111,12 @@ public class CreationPage extends AppCompatActivity {
 
         if(!errorFlag){
             Course course = new Course(UUID.randomUUID().toString(),
-                                       Home.userId,
+                                       App.userId,
                                        titleView.getText().toString(),
                                        descriptionView.getText().toString(),
                                        tvDate.getText().toString());
 
-            Member member = new Member(course.CourseId, Home.userId);
+            Member member = new Member(course.CourseId, App.userId);
 
             //Insert into local db
             App.getInstance().getDatabase().courseDao().insert(course);

@@ -6,6 +6,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public class RegisteredCourses extends AppCompatActivity {
     ListView coursesList;
+    boolean isFirstLoad = true;
     private ActionBarDrawerToggle toggle = null;
     private ArrayList courseTitles = new ArrayList();
 
@@ -26,6 +28,7 @@ public class RegisteredCourses extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registered_courses);
+        Log.i(App.tag, "RegisteredCourses userId = " + App.userId);
 
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.navView);
@@ -78,7 +81,7 @@ public class RegisteredCourses extends AppCompatActivity {
     void prepareListView() {
         courseTitles.clear();
 
-        List<Course> courses = App.getInstance().getDatabase().courseDao().registeredCourses(Home.userId);
+        List<Course> courses = App.getInstance().getDatabase().courseDao().registeredCourses(App.userId);
 
         for(int i = 0; i < courses.size(); i++)
             courseTitles.add(courses.get(i).Title);
@@ -89,7 +92,7 @@ public class RegisteredCourses extends AppCompatActivity {
         coursesList.setOnItemClickListener((parent, view, position, id) -> {
             String title = (String) parent.getItemAtPosition(position);
             Course course = App.getInstance().getDatabase().courseDao().getByTitle(title);
-            if(course.CreatorId.equals(Home.userId)) {
+            if(course.CreatorId.equals(App.userId)) {
                 Intent editPage = new Intent(view.getContext(), EditPage.class);
                 editPage.putExtra("COURSE_ID", course.CourseId);
                 editPage.putExtra("TITLE", course.Title);
@@ -108,13 +111,12 @@ public class RegisteredCourses extends AppCompatActivity {
         });
     }
 
-    /*@Override
+    @Override
     public void onResume(){
         super.onResume();
         if(!isFirstLoad) {
-            prepareListView1();
-            prepareListView2();
+            prepareListView();
         }
         isFirstLoad = false;
-    }*/
+    }
 }

@@ -10,6 +10,7 @@ import com.example.studentapp.Remote.RetrofitClient;
 import com.facebook.stetho.Stetho;
 
 public class App extends Application {
+    public static String userId;
     public static final String tag = "appLogs";
 
     public static App instance;

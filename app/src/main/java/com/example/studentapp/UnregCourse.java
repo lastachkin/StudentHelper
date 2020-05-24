@@ -101,12 +101,12 @@ public class UnregCourse extends AppCompatActivity {
 
     public void unsubscribeCourseHandler(View view) {
         //Delete from local DB
-        Member member = App.getInstance().getDatabase().memberDao().getById(courseId, Home.userId);
+        Member member = App.getInstance().getDatabase().memberDao().getById(courseId, App.userId);
         App.getInstance().getDatabase().memberDao().delete(member);
         Log.i(App.tag, "Delete from Member OK - Local DB");
 
         //Delete from remote DB
-        Call<Void> call = App.getInstance().getRestAPI().deleteMember(courseId, Home.userId);
+        Call<Void> call = App.getInstance().getRestAPI().deleteMember(courseId, App.userId);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

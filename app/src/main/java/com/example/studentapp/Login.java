@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity {
             );
 
         if(student != null) {
-            userId = student.Id;
+            App.userId = student.Id;
             return true;
         }
 
@@ -71,7 +71,7 @@ public class Login extends AppCompatActivity {
     public void startHomePage(View view) {
         if(login()) {
             Intent intent = new Intent(this, Home.class);
-            intent.putExtra("USER_ID", userId);
+            //intent.putExtra("USER_ID", userId);
             startActivity(intent);
         }
         else {
