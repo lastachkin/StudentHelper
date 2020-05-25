@@ -63,6 +63,11 @@ public class RegisteredCourses extends AppCompatActivity {
                             intent = new Intent(this, AvailableCourses.class);
                             startActivity(intent);
                             break;
+                        case R.id.logout:
+                            App.userId = null;
+                            intent = new Intent(this, Login.class);
+                            startActivity(intent);
+                            break;
                     }
                     return true;
                 }

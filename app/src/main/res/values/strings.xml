@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Student Helper</string>
+    <string name="app_name"></string>
     <string name="msg_body">It seems like you\'ve been register in the Student Helper application. Welcome to the club!</string>
     <string name="msg_subject">Welcome to the club buddy</string>
     <string name="mail_dialog_title">Sending message</string>

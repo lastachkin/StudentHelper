@@ -15,4 +15,8 @@
     <item
         android:id="@+id/miItem3"
         android:title="Available courses"/>
+
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"/>
 </menu>
