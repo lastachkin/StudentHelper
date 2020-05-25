@@ -8,11 +8,15 @@ android:layout_height="match_parent"
     android:background="@color/amber"
 tools:context=".DetailPage">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".DetailPage">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="199dp"
+            android:src="@drawable/user_logo" />
 
         <TextView
             android:id="@+id/name_label"

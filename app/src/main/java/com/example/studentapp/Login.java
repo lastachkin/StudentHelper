@@ -18,7 +18,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class Login extends AppCompatActivity {
-    String userId;
     EditText loginView, passwordView;
     CompositeDisposable disposables;
 
@@ -71,7 +70,6 @@ public class Login extends AppCompatActivity {
     public void startHomePage(View view) {
         if(login()) {
             Intent intent = new Intent(this, Home.class);
-            //intent.putExtra("USER_ID", userId);
             startActivity(intent);
         }
         else {

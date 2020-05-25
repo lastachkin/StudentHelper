@@ -115,7 +115,6 @@ public class Registration extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
 
-    //todo using algorithm with salt
     public static String generateMD5Hash(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -137,9 +136,9 @@ public class Registration extends AppCompatActivity {
         register();
         if(!errorFlag) {
             try {
-                //String message = getResources().getString(R.string.msg_body);
-                //SendMailTLS sm = new SendMailTLS(this, mail, getResources().getString(R.string.msg_subject), message);
-                //sm.execute();
+                String message = getResources().getString(R.string.msg_body);
+                SendMailTLS sm = new SendMailTLS(this, mail, getResources().getString(R.string.msg_subject), message);
+                sm.execute();
             }
             catch (Exception ex) {
                 Log.e(App.tag, ex.getMessage());

@@ -160,9 +160,8 @@ public class EditPage extends AppCompatActivity {
     public void deleteCourseHandler(View view) {
         //Delete from local db
         Course course = App.getInstance().getDatabase().courseDao().getById(courseId);
-        Member member = App.getInstance().getDatabase().memberDao().getById(courseId, App.userId);
         App.getInstance().getDatabase().courseDao().delete(course);
-        App.getInstance().getDatabase().memberDao().delete(member);
+        App.getInstance().getDatabase().memberDao().deleteAllFromCourse(courseId);
         Log.i(App.tag, "Delete from Course OK - Local DB");
         Log.i(App.tag, "Delete from Member OK - Local DB");
 

@@ -13,6 +13,9 @@ public interface MemberDao {
     @Query("SELECT * FROM member WHERE CourseId = :courseId AND MemberId = :id")
     Member getById(String courseId, String id);
 
+    @Query("DELETE FROM member WHERE CourseId = :courseId")
+    void deleteAllFromCourse(String courseId);
+
     @Query("DELETE FROM Member")
     void nukeTable();
 
