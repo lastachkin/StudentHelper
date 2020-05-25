@@ -27,7 +27,7 @@ public interface StudentDao {
     @Query("SELECT * FROM student WHERE Login = :login")
     Student loginUniqueness(String login);
 
-    @Query("SELECT * FROM course JOIN member ON course.CourseId = member.MemberId JOIN student ON member.MemberId = student.Id WHERE course.Title = :title")
+    @Query("SELECT * FROM course JOIN member ON course.CourseId = member.CourseId JOIN student ON member.MemberId = student.Id WHERE course.Title = :title")
     List<Student> getByCourseTitle(String title);
 
     @Query("DELETE FROM Student")
